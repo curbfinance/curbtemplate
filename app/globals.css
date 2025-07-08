@@ -29,7 +29,8 @@
   }
 
   body {
-    @apply fixed overflow-hidden overscroll-behavior-y-none;
+    @apply fixed overflow-hidden;
+    overscroll-behavior-y: none; /* Fixed: Replaced non-existent Tailwind class */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     background: radial-gradient(
