@@ -4,46 +4,63 @@
 
 @import url('https://rsms.me/inter/inter.css');
 
-* {
-  box-sizing: border-box;
+/* Curve-like base styles */
+@layer base {
+  :root {
+    --curve-purple: #7e3af2;
+    --curve-dark: #1a1d23;
+    --curve-gradient-start: #6e45e2;
+    --curve-gradient-end: #88d3ce;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply w-full h-full m-0 p-0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  body {
+    @apply fixed overflow-hidden overscroll-behavior-y-none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: radial-gradient(
+        ellipse at -200% 60%,
+        rgba(126, 58, 242, 0.15) 22%,
+        rgba(136, 211, 206, 0) 71%
+      ),
+      linear-gradient(
+        160deg,
+        theme('colors.purple.50'),
+        theme('colors.white') 100%
+      );
+  }
+
+  #root {
+    @apply overflow-auto;
+    background: inherit;
+  }
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  overflow: hidden;
-}
+/* Curve-like components */
+@layer components {
+  .curve-card {
+    @apply bg-white bg-opacity-50 backdrop-blur-lg rounded-xl border border-opacity-20 border-purple-200 shadow-lg;
+  }
 
-body {
-  font-family: 'Inter', sans-serif;
-}
+  .curve-button {
+    @apply bg-gradient-to-r from-[var(--curve-gradient-start)] to-[var(--curve-gradient-end)] text-white font-medium rounded-lg px-6 py-3 shadow-md hover:shadow-lg transition-all;
+  }
 
-#root {
-  background: white;
-  background: radial-gradient(
-      ellipse at -200% 60%,
-      rgba(209, 209, 209, 0.48) 22%,
-      rgba(182, 182, 182, 0) 71%
-    ),
-    linear-gradient(160deg, rgb(233, 233, 233), hsl(0, 0%, 100%) 100%);
-  overflow: auto;
-}
-
-body {
-  position: fixed;
-  overflow: hidden;
-  overscroll-behavior-y: none;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica,
-    ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  .curve-header {
+    @apply bg-[var(--curve-dark)] text-white p-4 shadow-md;
+  }
 }
